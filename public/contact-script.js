@@ -27,7 +27,7 @@ async function submitProblemReport(event) {
     
 
     try {
-        // Send problem report to our backend API
+        // Try server-side email sending first (works on Replit)
         const response = await fetch('/api/problem-report', {
             method: 'POST',
             headers: {
@@ -41,7 +41,11 @@ async function submitProblemReport(event) {
             result = await response.json();
         } catch (jsonError) {
             // Handle non-JSON responses (like rate limiting)
-            throw new Error(response.status === 429 ? 'Too many requests. Please wait before trying again.' : 'Server error occurred');
+            if (response.status === 429) {
+                throw new Error('Too many requests. Please wait before trying again.');
+            }
+            // If we get here, likely on static hosting - fall back to mailto
+            throw new Error('FALLBACK_TO_MAILTO');
         }
         
         if (response.ok && result.success) {
@@ -55,8 +59,59 @@ async function submitProblemReport(event) {
         }
         
     } catch (error) {
-        console.error('Error sending problem report:', error);
-        showMessage('There was an error sending your problem report. Please try again or contact us directly.', 'error');
+        console.error('API Error:', error.message);
+        
+        // Fall back to mailto for static hosting (like GitHub Pages)
+        if (error.message === 'FALLBACK_TO_MAILTO' || error.message.includes('fetch')) {
+            try {
+                // Create email content for mailto fallback
+                const emailContent = `
+New Problem Report from ${problemData.customerName}
+
+CONTACT INFORMATION:
+Name: ${problemData.customerName}
+Phone: ${problemData.customerPhone}
+
+COMPUTER DETAILS:
+Type: ${problemData.computerType}
+Brand: ${problemData.brand}
+Model: ${problemData.model || 'Not specified'}
+Serial Number: ${problemData.serialNumber || 'Not provided'}
+
+PROBLEM DETAILS:
+Description: ${problemData.problemDescription}
+When it started: ${problemData.whenHappened}
+What user was doing: ${problemData.whatDoing || 'Not specified'}
+
+ERROR MESSAGES:
+${problemData.errorMessages || 'None reported'}
+
+ADDITIONAL NOTES:
+${problemData.additionalNotes || 'None provided'}
+
+---
+Submitted via HomeByte IT Problem Report Form
+`;
+                
+                const subject = `Problem Report - ${problemData.brand} ${problemData.computerType} - ${problemData.customerName}`;
+                const mailtoLink = `mailto:CipherLogsPlus@Proton.me?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailContent)}`;
+                
+                // Open email client
+                window.location.href = mailtoLink;
+                
+                // Show fallback message
+                showMessage('Your email client will open with the problem report. Please send the email to complete your submission.', 'success');
+                
+                // Reset form
+                form.reset();
+                
+            } catch (mailtoError) {
+                console.error('Mailto fallback failed:', mailtoError);
+                showMessage('Unable to send report automatically. Please email us directly at CipherLogsPlus@Proton.me with your computer problem details.', 'error');
+            }
+        } else {
+            showMessage('There was an error sending your problem report. Please try again or contact us directly.', 'error');
+        }
     } finally {
         // Reset button
         submitButton.innerHTML = 'Send Problem Report';
