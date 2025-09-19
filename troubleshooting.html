@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Troubleshooting - HomeByte IT</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <header>
+        <h1 class="logo">Home<span class="byte">Byte</span> IT</h1>
+        <p class="tagline">Quick Help & Troubleshooting</p>
+    </header>
+    
+<nav>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="troubleshooting.html">Troubleshooting</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+</nav>
+
+    <section>
+        <h1>Interactive Troubleshooting</h1>
+        
+        <div class="scam-warning">
+            <h2>🚨 IMPORTANT SCAM ALERT 🚨</h2>
+            <p><strong>MICROSOFT AND WINDOWS WILL NEVER ATTEMPT TO CONTACT YOU UNDER ANY CIRCUMSTANCES!</strong></p>
+            <p>If someone calls saying they're from Microsoft, Apple, or any tech company asking to "fix your computer" - <strong>IT'S A SCAM!</strong> Hang up immediately and do NOT give them access to your computer!</p>
+        </div>
+        
+        <div class="troubleshooting-tool">
+            <h3>Describe Your Problem</h3>
+            <p>Type what's happening with your computer below, and we'll suggest some quick fixes:</p>
+            
+            <input type="text" id="problemInput" placeholder="e.g., my computer won't turn on, running very slow, blue screen..." />
+            <button onclick="getSuggestions()">Get Help</button>
+            
+            <div id="suggestions"></div>
+        </div>
+        
+        <div class="general-tips">
+            <h3>General Computer Safety Tips</h3>
+            <div class="tip-box">
+                <h4>🛡️ Virus Prevention</h4>
+                <ul>
+                    <li><strong>Stop clicking on random things!</strong> Only download from trusted sources</li>
+                    <li>Don't click on suspicious links or pop-ups</li>
+                    <li>Keep your antivirus software updated</li>
+                    <li>Be careful with email attachments from unknown senders</li>
+                </ul>
+            </div>
+            
+            <div class="tip-box">
+                <h4>🐌 If Your Computer is Slow</h4>
+                <ul>
+                    <li>Close programs you're not using</li>
+                    <li>Restart your computer regularly</li>
+                    <li>Check for viruses and malware</li>
+                    <li>Free up disk space by deleting old files</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <p>&copy; 2025 HomeByte IT. Professional computer support at your location.</p>
+    </footer>
+
+    <script>
+    function getSuggestions() {
+        const problem = document.getElementById('problemInput').value.toLowerCase();
+        const suggestionsDiv = document.getElementById('suggestions');
+        
+        let suggestions = [];
+        
+        // Power Issues
+        if (problem.includes('won\'t turn on') || problem.includes('dead') || problem.includes('no power') || problem.includes('not starting')) {
+            suggestions = [
+                "Check that the power cable is firmly plugged in",
+                "Make sure the power switch on the back of the computer is turned ON",
+                "Try a different power outlet",
+                "Check if the power light on the computer is on",
+                "If it's a laptop, try plugging it in and let it charge for 30 minutes"
+            ];
+        }
+        // Blue Screen
+        else if (problem.includes('blue screen') || problem.includes('bsod') || problem.includes('crash')) {
+            suggestions = [
+                "Allow the PC to restart - don't force shut down",
+                "Write down any error codes shown on the blue screen",
+                "If it keeps happening, restart in Safe Mode",
+                "Check if you recently installed new software or drivers",
+                "This often indicates a hardware or driver issue - contact us if it persists"
+            ];
+        }
+        // Slow Performance
+        else if (problem.includes('slow') || problem.includes('laggy') || problem.includes('freezing') || problem.includes('running slow')) {
+            suggestions = [
+                "Stop clicking on random things and downloading unknown software!",
+                "Restart your computer - this fixes many performance issues",
+                "Close programs you're not currently using",
+                "Run a full virus scan with your antivirus software",
+                "Check if your hard drive is almost full and delete old files"
+            ];
+        }
+        // Virus/Malware
+        else if (problem.includes('virus') || problem.includes('popup') || problem.includes('ads') || problem.includes('malware')) {
+            suggestions = [
+                "Run a full system scan with your antivirus software",
+                "Don't click on any suspicious pop-ups or download 'cleaners'",
+                "Avoid visiting suspicious websites",
+                "Consider running Malwarebytes for additional cleaning",
+                "Stop downloading and clicking on random things!"
+            ];
+        }
+        // Scam Calls
+        else if (problem.includes('microsoft called') || problem.includes('tech support call') || problem.includes('someone called')) {
+            suggestions = [
+                "🚨 THIS IS A SCAM! Microsoft NEVER calls customers!",
+                "Hang up immediately and do NOT give them access to your computer",
+                "Do NOT download any software they tell you to install",
+                "Do NOT give them credit card information",
+                "If you already gave them access, disconnect from internet and call us immediately"
+            ];
+        }
+        // Internet Issues
+        else if (problem.includes('internet') || problem.includes('wifi') || problem.includes('connection') || problem.includes('can\'t connect')) {
+            suggestions = [
+                "Check that your wifi is turned on and connected",
+                "Try restarting your router (unplug for 30 seconds, plug back in)",
+                "Restart your computer",
+                "Check if other devices can connect to the same network",
+                "Make sure you're using the correct wifi password"
+            ];
+        }
+        // Default
+        else if (problem.length > 0) {
+            suggestions = [
+                "Try restarting your computer first - this fixes many common issues",
+                "Make sure all cables are securely connected",
+                "Check if you recently installed any new software",
+                "Consider running a virus scan",
+                "If the problem persists, contact us for professional help"
+            ];
+        }
+        
+        // Display suggestions
+        if (suggestions.length > 0) {
+            let html = '<div class="suggestion-results"><h4>Try These Steps:</h4><ol>';
+            suggestions.forEach(suggestion => {
+                if (suggestion.includes('🚨') || suggestion.includes('SCAM')) {
+                    html += `<li class="scam-alert">${suggestion}</li>`;
+                } else {
+                    html += `<li>${suggestion}</li>`;
+                }
+            });
+            html += '</ol><p class="contact-note">If these steps don\'t help, <a href="contact.html">contact us for professional support</a>!</p></div>';
+            suggestionsDiv.innerHTML = html;
+        } else if (problem.length === 0) {
+            suggestionsDiv.innerHTML = '<p class="error-message">Please describe your computer problem above.</p>';
+        }
+    }
+    
+    // Allow Enter key to trigger search
+    document.getElementById('problemInput').addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+            getSuggestions();
+        }
+    });
+    </script>
+</body>
+</html>
