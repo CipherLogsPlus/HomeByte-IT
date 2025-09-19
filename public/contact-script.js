@@ -26,6 +26,8 @@ async function submitProblemReport(event) {
     };
     
 
+    let emailSentSuccessfully = false;
+    
     try {
         // Try server-side email sending first (works on Replit)
         const response = await fetch('/api/problem-report', {
@@ -36,33 +38,34 @@ async function submitProblemReport(event) {
             body: JSON.stringify(problemData)
         });
         
-        let result;
-        try {
-            result = await response.json();
-        } catch (jsonError) {
-            // Handle non-JSON responses (like rate limiting)
-            if (response.status === 429) {
-                throw new Error('Too many requests. Please wait before trying again.');
+        // Check if we got a successful response
+        if (response.ok) {
+            let result;
+            try {
+                result = await response.json();
+                if (result && result.success) {
+                    // Successfully sent via server
+                    showMessage('Problem report sent successfully! We\'ll get back to you soon.', 'success');
+                    form.reset();
+                    emailSentSuccessfully = true;
+                } else {
+                    // Server responded but with an error
+                    throw new Error('FALLBACK_TO_MAILTO');
+                }
+            } catch (jsonError) {
+                // Invalid JSON response
+                throw new Error('FALLBACK_TO_MAILTO');
             }
-            // If we get here, likely on static hosting - fall back to mailto
+        } else {
+            // Non-2xx response (404, 500, etc.) - fall back to mailto
             throw new Error('FALLBACK_TO_MAILTO');
         }
         
-        if (response.ok && result.success) {
-            // Show success message
-            showMessage('Problem report sent successfully! We\'ll get back to you soon.', 'success');
-            
-            // Reset form
-            form.reset();
-        } else {
-            throw new Error(result.error || 'Failed to send problem report');
-        }
-        
     } catch (error) {
-        console.error('API Error:', error.message);
+        console.log('Server email failed, falling back to mailto:', error.message);
         
-        // Fall back to mailto for static hosting (like GitHub Pages)
-        if (error.message === 'FALLBACK_TO_MAILTO' || error.message.includes('fetch')) {
+        // For ANY error (network, 404, 500, CORS, etc.), fall back to mailto
+        if (!emailSentSuccessfully) {
             try {
                 // Create email content for mailto fallback
                 const emailContent = `
@@ -104,13 +107,12 @@ Submitted via HomeByte IT Problem Report Form
                 
                 // Reset form
                 form.reset();
+                emailSentSuccessfully = true;
                 
             } catch (mailtoError) {
-                console.error('Mailto fallback failed:', mailtoError);
+                console.error('Mailto fallback also failed:', mailtoError);
                 showMessage('Unable to send report automatically. Please email us directly at CipherLogsPlus@Proton.me with your computer problem details.', 'error');
             }
-        } else {
-            showMessage('There was an error sending your problem report. Please try again or contact us directly.', 'error');
         }
     } finally {
         // Reset button
