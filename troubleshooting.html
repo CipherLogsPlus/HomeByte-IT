@@ -82,7 +82,9 @@
                 "Make sure the power switch on the back of the computer is turned ON",
                 "Try a different power outlet",
                 "Check if the power light on the computer is on",
-                "If it's a laptop, try plugging it in and let it charge for 30 minutes"
+                "If it's a laptop, try plugging it in and let it charge for 30 minutes",
+                "Try holding the power button for 10 seconds, then press it again",
+                "If none of these work, it may be a hardware issue - contact us for professional help"
             ];
         }
         // Blue Screen
@@ -105,8 +107,8 @@
                 "Check if your hard drive is almost full and delete old files"
             ];
         }
-        // Virus/Malware
-        else if (problem.includes('virus') || problem.includes('popup') || problem.includes('ads') || problem.includes('malware')) {
+        // Virus/Malware/Popups
+        else if (problem.includes('virus') || problem.includes('popup') || problem.includes('pop up') || problem.includes('ads') || problem.includes('malware')) {
             suggestions = [
                 "Run a full system scan with your antivirus software",
                 "Don't click on any suspicious pop-ups or download 'cleaners'",
@@ -115,13 +117,14 @@
                 "Stop downloading and clicking on random things!"
             ];
         }
-        // Scam Calls
-        else if (problem.includes('microsoft called') || problem.includes('tech support call') || problem.includes('someone called')) {
+        // Scam Calls/Popups
+        else if (problem.includes('microsoft called') || problem.includes('tech support call') || problem.includes('someone called') || problem.includes('mcafee') || problem.includes('norton') || problem.includes('antivirus popup') || problem.includes('warning popup')) {
             suggestions = [
-                "🚨 THIS IS A SCAM! Microsoft NEVER calls customers!",
-                "Hang up immediately and do NOT give them access to your computer",
+                "🚨 THIS IS A SCAM! Microsoft, McAfee, Norton, and other companies NEVER call or show pop-ups asking you to call them!",
+                "If it's a phone call: Hang up immediately and do NOT give them access to your computer",
+                "If it's a pop-up: Close the browser window (don't click anything in the pop-up)",
                 "Do NOT download any software they tell you to install",
-                "Do NOT give them credit card information",
+                "Do NOT give them credit card information or personal details",
                 "If you already gave them access, disconnect from internet and call us immediately"
             ];
         }
