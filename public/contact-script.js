@@ -21,56 +21,42 @@ async function submitProblemReport(event) {
         errorMessages: formData.get('errorMessages'),
         customerName: formData.get('customerName'),
         customerPhone: formData.get('customerPhone'),
-        additionalNotes: formData.get('additionalNotes')
+        additionalNotes: formData.get('additionalNotes'),
+        honeypot: formData.get('honeypot') // Include honeypot for spam protection
     };
     
-    // Create email content
-    const emailContent = `
-New Problem Report from ${problemData.customerName}
-
-CONTACT INFORMATION:
-Name: ${problemData.customerName}
-Phone: ${problemData.customerPhone}
-
-COMPUTER DETAILS:
-Type: ${problemData.computerType}
-Brand: ${problemData.brand}
-Model: ${problemData.model || 'Not specified'}
-Serial Number: ${problemData.serialNumber || 'Not provided'}
-
-PROBLEM DETAILS:
-Description: ${problemData.problemDescription}
-When it started: ${problemData.whenHappened}
-What user was doing: ${problemData.whatDoing || 'Not specified'}
-
-ERROR MESSAGES:
-${problemData.errorMessages || 'None reported'}
-
-ADDITIONAL NOTES:
-${problemData.additionalNotes || 'None provided'}
-
----
-Submitted via HomeByte IT Problem Report Form
-`;
 
     try {
-        // Since this is a static website, we'll use a simple email link approach
-        // In a real implementation, this would send via the Replit mail service
-        const subject = `Problem Report - ${problemData.brand} ${problemData.computerType} - ${problemData.customerName}`;
-        const mailtoLink = `mailto:support@homebyteit.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailContent)}`;
+        // Send problem report to our backend API
+        const response = await fetch('/api/problem-report', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(problemData)
+        });
         
-        // Open email client
-        window.location.href = mailtoLink;
+        let result;
+        try {
+            result = await response.json();
+        } catch (jsonError) {
+            // Handle non-JSON responses (like rate limiting)
+            throw new Error(response.status === 429 ? 'Too many requests. Please wait before trying again.' : 'Server error occurred');
+        }
         
-        // Show success message
-        showMessage('Problem report prepared! Your email client should open with all the details filled in.', 'success');
-        
-        // Reset form
-        form.reset();
+        if (response.ok && result.success) {
+            // Show success message
+            showMessage('Problem report sent successfully! We\'ll get back to you soon.', 'success');
+            
+            // Reset form
+            form.reset();
+        } else {
+            throw new Error(result.error || 'Failed to send problem report');
+        }
         
     } catch (error) {
-        console.error('Error preparing problem report:', error);
-        showMessage('There was an error preparing your problem report. Please try again or contact us directly.', 'error');
+        console.error('Error sending problem report:', error);
+        showMessage('There was an error sending your problem report. Please try again or contact us directly.', 'error');
     } finally {
         // Reset button
         submitButton.innerHTML = 'Send Problem Report';

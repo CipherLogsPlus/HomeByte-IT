@@ -118,6 +118,11 @@
                     <textarea id="additionalNotes" name="additionalNotes" rows="3" placeholder="Best time to call, special instructions, or anything else we should know..."></textarea>
                 </div>
                 
+                <!-- Honeypot field for spam protection - hidden from users -->
+                <div style="position: absolute; left: -9999px; opacity: 0;">
+                    <input type="text" name="honeypot" tabindex="-1" autocomplete="off">
+                </div>
+                
                 <button type="submit" class="submit-button">Send Problem Report</button>
             </form>
         </div>
