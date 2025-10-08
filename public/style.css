@@ -142,61 +142,6 @@ section {
     background-color: #2563eb;
 }
 
-/* Quick topic chip styling */
-.quick-topics {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-    margin-bottom: 20px;
-}
-
-.quick-topic {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 0;
-    background: none;
-    background-color: transparent;
-    border: none;
-    appearance: none;
-    -webkit-appearance: none;
-    color: #1f2937;
-    font-size: 0.9rem;
-    cursor: pointer;
-    text-align: left;
-    line-height: 1.4;
-    max-width: 260px;
-}
-
-.quick-topic strong {
-    font-weight: 600;
-    color: #1e3a8a;
-    display: block;
-}
-
-.quick-topic span {
-    margin-top: 2px;
-    font-size: 0.78rem;
-    color: #4b5563;
-}
-
-.quick-topic:hover strong,
-.quick-topic:focus-visible strong {
-    text-decoration: underline;
-    text-decoration-thickness: 2px;
-}
-
-.quick-topic:focus-visible {
-    outline: 2px solid #93c5fd;
-    outline-offset: 2px;
-}
-
-.quick-topic.critical,
-.quick-topic.warning,
-.quick-topic.advisory {
-    color: #1f2937;
-}
-
 .suggestion-wrapper {
     min-height: 80px;
 }

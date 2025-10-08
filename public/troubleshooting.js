@@ -397,47 +397,15 @@ const ISSUE_LIBRARY = [
   },
 ];
 
-const QUICK_TOPIC_IDS = ["power", "blue-screen", "performance", "malware", "scam", "network", "overheating", "update-loop"];
-
 document.addEventListener("DOMContentLoaded", () => {
   const input = document.getElementById("problemInput");
   const suggestionsDiv = document.getElementById("suggestions");
   const trigger = document.getElementById("suggestionButton");
-  const quickTopicsContainer = document.getElementById("quickTopics");
 
   if (!input || !suggestionsDiv || !trigger) {
     console.warn("Troubleshooting UI elements missing; skipping interactive helper.");
     return;
   }
-
-  const renderQuickTopics = () => {
-    if (!quickTopicsContainer) {
-      return;
-    }
-
-    const fragment = document.createDocumentFragment();
-
-    QUICK_TOPIC_IDS.forEach((issueId) => {
-      const issue = ISSUE_LIBRARY.find((entry) => entry.id === issueId);
-      if (!issue) return;
-
-      const button = document.createElement("button");
-      button.type = "button";
-      button.className = "quick-topic";
-      button.dataset.severity = issue.severity;
-      button.innerHTML = `<strong>${issue.title}:</strong> <span>${issue.summary}</span>`;
-      button.addEventListener("click", () => {
-        input.value = issue.example || issue.title;
-        renderIssue(issue, { matchedKeywords: ["quick-select"] });
-        input.focus();
-      });
-
-      fragment.appendChild(button);
-    });
-
-    quickTopicsContainer.innerHTML = "";
-    quickTopicsContainer.appendChild(fragment);
-  };
 
   const highlightText = (text, terms) => {
     if (!terms || terms.length === 0) return text;
@@ -601,5 +569,4 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  renderQuickTopics();
 });
