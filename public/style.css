@@ -156,7 +156,10 @@ section {
     align-items: flex-start;
     padding: 0;
     background: none;
+    background-color: transparent;
     border: none;
+    appearance: none;
+    -webkit-appearance: none;
     color: #1f2937;
     font-size: 0.9rem;
     cursor: pointer;
