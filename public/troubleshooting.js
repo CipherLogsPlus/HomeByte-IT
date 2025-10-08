@@ -222,7 +222,7 @@ const ISSUE_LIBRARY = [
       "Pop-up prevents normal use of the computer even after reboot.",
     ],
     recommendedService:
-      "If access was granted, call us immediately. We'll clean the system, review audit logs, and ensure they no longer have control.",
+      "If access was granted, email us right away. We'll schedule a visit to clean the system, review audit logs, and ensure they no longer have control.",
     tools: [
       { label: "FTC Scam Guidance", url: "https://consumer.ftc.gov/articles/how-avoid-tech-support-scams" },
     ],
@@ -444,11 +444,11 @@ document.addEventListener("DOMContentLoaded", () => {
           <ul>${issue.deeperDiagnosis.map((item) => `<li>${highlightText(item, matchedKeywords)}</li>`).join("")}</ul>
         </section>
         <section class="issue-flags">
-          <h5>Red Flags — Call Us Immediately If:</h5>
+          <h5>Red Flags — Email Us Immediately If:</h5>
           <ul>${issue.urgentFlags.map((item) => `<li>${item}</li>`).join("")}</ul>
         </section>
         <section>
-          <h5>When To Bring In HomeByte IT</h5>
+          <h5>When To Schedule A HomeByte IT Visit</h5>
           <p>${issue.recommendedService}</p>
         </section>
         ${
