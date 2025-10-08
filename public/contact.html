@@ -21,128 +21,131 @@
     </ul>
 </nav>
 
-
-    <section>
-        <h1>Get Professional Computer Support Today</h1>
-        <p>Ready to solve your computer problems? We bring expert tech support directly to your location – no need to disconnect or transport your equipment.</p>
-        
-        <div class="scam-warning-small">
-            <p><strong>⚠️ Reminder:</strong> Microsoft and Windows will NEVER call you. If someone calls claiming to be tech support, it's a scam!</p>
-        </div>
-        
-        <div class="contact-options">
-            <div class="contact-method">
-                <h3>📞 Call Us</h3>
-                <p><strong>Phone:</strong> To be determined</p>
-                <p>Call for immediate assistance or to schedule an on-site visit at your convenience.</p>
-            </div>
-            
-            <div class="contact-method">
-                <h3>📧 Email Us</h3>
-                <p><strong>Email:</strong> To be determined</p>
-                <p>Send us details about your computer issue and we'll get back to you with a solution plan.</p>
-            </div>
-            
-            <div class="contact-method">
-                <h3>📋 Report a Problem</h3>
-                <p>Use our detailed form below to give us all the information we need - no back-and-forth emails!</p>
-            </div>
-        </div>
-        
-        <div class="problem-report-form">
-            <h2>Detailed Problem Report</h2>
-            <p>Fill out this form to give us everything we need to help you quickly and efficiently:</p>
-            
-            <form id="problemReportForm" onsubmit="submitProblemReport(event)">
-                <div class="form-row">
-                    <div class="form-group half">
-                        <label for="computerType">Computer Type*</label>
-                        <select id="computerType" name="computerType" required>
-                            <option value="">Select type...</option>
-                            <option value="Laptop">Laptop</option>
-                            <option value="Desktop">Desktop</option>
-                            <option value="All-in-One">All-in-One</option>
-                            <option value="NUC/Mini PC">NUC/Mini PC</option>
-                        </select>
-                    </div>
-                    <div class="form-group half">
-                        <label for="brand">Brand*</label>
-                        <input type="text" id="brand" name="brand" placeholder="e.g., ASUS, Dell, HP" required>
-                    </div>
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-group half">
-                        <label for="model">Model</label>
-                        <input type="text" id="model" name="model" placeholder="e.g., ProBook 450, Inspiron 15">
-                    </div>
-                    <div class="form-group half">
-                        <label for="serialNumber">Serial Number</label>
-                        <input type="text" id="serialNumber" name="serialNumber" placeholder="Usually on a sticker on the computer">
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="problemDescription">What's Wrong?*</label>
-                    <textarea id="problemDescription" name="problemDescription" rows="4" placeholder="Describe the problem in detail..." required></textarea>
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-group half">
-                        <label for="whenHappened">When Did This Start?*</label>
-                        <input type="text" id="whenHappened" name="whenHappened" placeholder="e.g., 09-19-2025 2:20pm, yesterday morning" required>
-                    </div>
-                    <div class="form-group half">
-                        <label for="whatDoing">What Were You Doing?</label>
-                        <input type="text" id="whatDoing" name="whatDoing" placeholder="e.g., browsing Facebook, working in Excel">
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="errorMessages">Any Error Messages?</label>
-                    <textarea id="errorMessages" name="errorMessages" rows="3" placeholder="Copy any error messages exactly as they appear..."></textarea>
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-group half">
-                        <label for="customerName">Your Name*</label>
-                        <input type="text" id="customerName" name="customerName" required>
-                    </div>
-                    <div class="form-group half">
-                        <label for="customerPhone">Phone Number*</label>
-                        <input type="tel" id="customerPhone" name="customerPhone" required>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="additionalNotes">Additional Notes</label>
-                    <textarea id="additionalNotes" name="additionalNotes" rows="3" placeholder="Best time to call, special instructions, or anything else we should know..."></textarea>
-                </div>
-                
-                <!-- Honeypot field for spam protection - hidden from users -->
-                <div style="position: absolute; left: -9999px; opacity: 0;">
-                    <input type="text" name="honeypot" tabindex="-1" autocomplete="off">
-                </div>
-                
-                <button type="submit" class="submit-button">Send Problem Report</button>
-            </form>
-        </div>
-        
-        <div class="benefit">
-            <h3>Mobile Service Advantage</h3>
-            <p>Unlike traditional repair shops, we come to you! No need to:</p>
-            <ul>
-                <li>Disconnect all your cables and peripherals</li>
-                <li>Transport heavy desktop computers</li>
-                <li>Wait days or weeks for repairs</li>
-                <li>Risk damage during transport</li>
-            </ul>
-            <p>We work on your computer in its natural environment, ensuring everything works perfectly when we're done.</p>
-        </div>
-    </section>
-    <footer>
-        <p>&copy; 2025 HomeByte IT. Website under construction.</p>
-    </footer>
+<section>
+    <h1>Get Professional Computer Support Today</h1>
+    <p>Ready to solve your computer problems? We bring expert tech support directly to your location – no need to disconnect or transport your equipment.</p>
     
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
-    <script src="contact-script.js" defer></script>
+    <div class="scam-warning-small">
+        <p><strong>⚠️ Reminder:</strong> Microsoft and Windows will NEVER call you. If someone calls claiming to be tech support, it's a scam!</p>
+    </div>
+    
+    <div class="contact-options">
+        <div class="contact-method">
+            <h3>📞 Call Us</h3>
+            <p><strong>Phone:</strong> To be determined</p>
+            <p>Call for immediate assistance or to schedule an on-site visit at your convenience.</p>
+        </div>
+        
+        <div class="contact-method">
+            <h3>📧 Email Us</h3>
+            <p><strong>Email:</strong> To be determined</p>
+            <p>Send us details about your computer issue and we'll get back to you with a solution plan.</p>
+        </div>
+        
+        <div class="contact-method">
+            <h3>📋 Report a Problem</h3>
+            <p>Use our detailed form below to give us all the information we need - no back-and-forth emails!</p>
+        </div>
+    </div>
+    
+    <div class="problem-report-form">
+        <h2>Detailed Problem Report</h2>
+        <p>Fill out this form to give us everything we need to help you quickly and efficiently:</p>
+        
+        <form id="problemReportForm">
+            <div class="form-row">
+                <div class="form-group half">
+                    <label for="computerType">Computer Type*</label>
+                    <select id="computerType" name="computerType" required>
+                        <option value="">Select type...</option>
+                        <option value="Laptop">Laptop</option>
+                        <option value="Desktop">Desktop</option>
+                        <option value="All-in-One">All-in-One</option>
+                        <option value="NUC/Mini PC">NUC/Mini PC</option>
+                    </select>
+                </div>
+                <div class="form-group half">
+                    <label for="brand">Brand*</label>
+                    <input type="text" id="brand" name="brand" placeholder="e.g., ASUS, Dell, HP" required>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group half">
+                    <label for="model">Model</label>
+                    <input type="text" id="model" name="model" placeholder="e.g., ProBook 450, Inspiron 15">
+                </div>
+                <div class="form-group half">
+                    <label for="serialNumber">Serial Number</label>
+                    <input type="text" id="serialNumber" name="serialNumber" placeholder="Usually on a sticker on the computer">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="problemDescription">What's Wrong?*</label>
+                <textarea id="problemDescription" name="problemDescription" rows="4" placeholder="Describe the problem in detail..." required></textarea>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group half">
+                    <label for="whenHappened">When Did This Start?*</label>
+                    <input type="text" id="whenHappened" name="whenHappened" placeholder="e.g., 09-19-2025 2:20pm, yesterday morning" required>
+                </div>
+                <div class="form-group half">
+                    <label for="whatDoing">What Were You Doing?</label>
+                    <input type="text" id="whatDoing" name="whatDoing" placeholder="e.g., browsing Facebook, working in Excel">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="errorMessages">Any Error Messages?</label>
+                <textarea id="errorMessages" name="errorMessages" rows="3" placeholder="Copy any error messages exactly as they appear..."></textarea>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group half">
+                    <label for="customerName">Your Name*</label>
+                    <input type="text" id="customerName" name="customerName" required>
+                </div>
+                <div class="form-group half">
+                    <label for="customerPhone">Phone Number*</label>
+                    <input type="tel" id="customerPhone" name="customerPhone" required>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="additionalNotes">Additional Notes</label>
+                <textarea id="additionalNotes" name="additionalNotes" rows="3" placeholder="Best time to call, special instructions, or anything else we should know..."></textarea>
+            </div>
+            
+            <!-- Honeypot field for spam protection - hidden -->
+            <div style="position: absolute; left: -9999px; opacity: 0;">
+                <input type="text" name="honeypot" tabindex="-1" autocomplete="off">
+            </div>
+            
+            <button type="submit" class="submit-button">Send Problem Report</button>
+        </form>
+    </div>
+    
+    <div class="benefit">
+        <h3>Mobile Service Advantage</h3>
+        <p>Unlike traditional repair shops, we come to you! No need to:</p>
+        <ul>
+            <li>Disconnect all your cables and peripherals</li>
+            <li>Transport heavy desktop computers</li>
+            <li>Wait days or weeks for repairs</li>
+            <li>Risk damage during transport</li>
+        </ul>
+        <p>We work on your computer in its natural environment, ensuring everything works perfectly when we're done.</p>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2025 HomeByte IT. Website under construction.</p>
+</footer>
+
+<!-- EmailJS scripts (fixed placement) -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="contact-script.js"></script>
+</body>
+</html>
