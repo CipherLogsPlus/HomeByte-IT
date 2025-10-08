@@ -424,7 +424,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const button = document.createElement("button");
       button.type = "button";
       button.className = `quick-topic ${issue.severity}`;
-      button.innerHTML = `<strong>${issue.title}</strong><span>${issue.summary}</span>`;
+      button.innerHTML = `<strong>${issue.title}:</strong> <span>${issue.summary}</span>`;
       button.addEventListener("click", () => {
         input.value = issue.example || issue.title;
         renderIssue(issue, { matchedKeywords: ["quick-select"] });
