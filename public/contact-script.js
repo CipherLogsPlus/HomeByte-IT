@@ -62,9 +62,22 @@ Submitted via HomeByte IT Problem Report Form
         const subject = `Problem Report - ${problemData.brand} ${problemData.computerType} - ${problemData.customerName}`;
         const mailtoLink = `mailto:CipherLogsPlus@Proton.me?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailContent)}`;
 
-        // Try opening a new mail window; fall back to direct navigation if blocked
-        const mailWindow = window.open(mailtoLink, '_blank');
-        if (!mailWindow) {
+        // Trigger the mail client without leaving a blank tab behind
+        let launched = false;
+        try {
+            const anchor = document.createElement('a');
+            anchor.href = mailtoLink;
+            anchor.style.display = 'none';
+            anchor.rel = 'noopener';
+            document.body.appendChild(anchor);
+            anchor.click();
+            document.body.removeChild(anchor);
+            launched = true;
+        } catch (err) {
+            console.warn('Anchor mailto launch failed, falling back to location.href', err);
+        }
+
+        if (!launched) {
             window.location.href = mailtoLink;
         }
 
