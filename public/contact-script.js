@@ -10,7 +10,7 @@ try {
         EMAILJS_PUBLIC_KEY &&
         !EMAILJS_PUBLIC_KEY.includes('REPLACE_WITH')
     ) {
-        emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+        emailjs.init(EMAILJS_PUBLIC_KEY);
         emailJsReady = true;
     } else {
         console.warn('EmailJS credentials missing or not initialized. Mailto fallback will be used.');
@@ -67,7 +67,7 @@ function submitProblemReport(event) {
                 additional_notes: problemData.additionalNotes || 'None provided'
             };
 
-            emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
+            emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams, EMAILJS_PUBLIC_KEY)
                 .then(() => {
                     showMessage('Problem report sent successfully! We\'ll reach out soon.', 'success');
                     form.reset();
