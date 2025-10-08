@@ -39,18 +39,31 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const formData = new FormData(form);
-    const templateParams = {
-      computer_type: formData.get("computerType") || "Not specified",
+    const values = {
+      computerType: formData.get("computerType") || "Not specified",
       brand: formData.get("brand") || "Not specified",
       model: formData.get("model") || "Not specified",
-      serial_number: formData.get("serialNumber") || "Not provided",
-      problem_description: formData.get("problemDescription") || "Not provided",
-      when_happened: formData.get("whenHappened") || "Not provided",
-      what_doing: formData.get("whatDoing") || "Not specified",
-      error_messages: formData.get("errorMessages") || "None reported",
-      customer_name: formData.get("customerName") || "Not provided",
-      customer_phone: formData.get("customerPhone") || "Not provided",
-      additional_notes: formData.get("additionalNotes") || "None provided",
+      serialNumber: formData.get("serialNumber") || "Not provided",
+      problemDescription: formData.get("problemDescription") || "Not provided",
+      whenHappened: formData.get("whenHappened") || "Not provided",
+      whatDoing: formData.get("whatDoing") || "Not specified",
+      errorMessages: formData.get("errorMessages") || "None reported",
+      customerName: formData.get("customerName") || "Not provided",
+      customerPhone: formData.get("customerPhone") || "Not provided",
+      additionalNotes: formData.get("additionalNotes") || "None provided",
+    };
+
+    const templateParams = {
+      ...values,
+      computer_type: values.computerType,
+      serial_number: values.serialNumber,
+      problem_description: values.problemDescription,
+      when_happened: values.whenHappened,
+      what_doing: values.whatDoing,
+      error_messages: values.errorMessages,
+      customer_name: values.customerName,
+      customer_phone: values.customerPhone,
+      additional_notes: values.additionalNotes,
     };
 
     emailjs
