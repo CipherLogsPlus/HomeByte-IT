@@ -1,9 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const EMAILJS_PUBLIC_KEY = "jqeR1X8fnHf0opxzjEl_A";
+  const EMAILJS_PUBLIC_KEY = "jqeR1X8fnHf0opxzjEl_A"; // works even if private for now
   const EMAILJS_SERVICE_ID = "service_p66l4q8";
   const EMAILJS_TEMPLATE_ID = "template_qs7mn4h";
 
-  // Wait until EmailJS loads, then initialize
   const checkEmailJS = setInterval(() => {
     if (typeof emailjs !== "undefined") {
       clearInterval(checkEmailJS);
@@ -21,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
     button.disabled = true;
 
     const honeypot = form.querySelector("input[name='honeypot']").value;
-    if (honeypot) return; // Stop bots
+    if (honeypot) return;
 
     emailjs
       .sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form)
