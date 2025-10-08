@@ -1,15 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // === EmailJS configuration ===
   const EMAILJS_PUBLIC_KEY = "fRoFZuQPSpVwvWMaV";
   const EMAILJS_SERVICE_ID = "service_p66l4q8";
   const EMAILJS_TEMPLATE_ID = "template_qs7mn4h";
 
-  // Wait for EmailJS to load properly before initializing
+  // Wait until EmailJS loads, then initialize
   const checkEmailJS = setInterval(() => {
     if (typeof emailjs !== "undefined") {
       clearInterval(checkEmailJS);
       emailjs.init(EMAILJS_PUBLIC_KEY);
-      console.log("✅ EmailJS initialized successfully.");
+      console.log("✅ EmailJS initialized.");
     }
   }, 300);
 
@@ -21,39 +20,22 @@ document.addEventListener("DOMContentLoaded", () => {
     button.innerText = "Sending...";
     button.disabled = true;
 
-    const formData = new FormData(form);
-    const honeypot = formData.get("honeypot");
+    const honeypot = form.querySelector("input[name='honeypot']").value;
+    if (honeypot) return; // Stop bots
 
-    // Simple bot check
-    if (honeypot) return;
-
-    // Send form data using EmailJS
     emailjs
       .sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form)
       .then(() => {
-        showMessage("✅ Problem report sent successfully! We'll reach out soon.", "success");
+        alert("✅ Problem report sent successfully!");
         form.reset();
       })
-      .catch((error) => {
-        console.error("EmailJS failed:", error);
-        showMessage("❌ Failed to send report. Please email CipherLogsPlus@Proton.me manually.", "error");
+      .catch((err) => {
+        console.error("❌ EmailJS error:", err);
+        alert("⚠️ Failed to send report. Please try again later.");
       })
       .finally(() => {
         button.innerText = "Send Problem Report";
         button.disabled = false;
       });
   });
-
-  // Helper to display messages below form
-  function showMessage(message, type) {
-    const oldMsg = document.querySelector(".form-message");
-    if (oldMsg) oldMsg.remove();
-
-    const div = document.createElement("div");
-    div.className = `form-message ${type}`;
-    div.innerHTML = message;
-    form.parentNode.insertBefore(div, form.nextSibling);
-
-    setTimeout(() => div.remove(), 6000);
-  }
 });
