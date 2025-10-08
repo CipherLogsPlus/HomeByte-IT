@@ -15,7 +15,22 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
+  const messageContainer = document.getElementById("formMessages");
   const originalButtonText = submitButton.innerText;
+
+  const showMessage = (type, text) => {
+    if (!messageContainer) {
+      console.warn("Message container not found for contact form.");
+      window.alert(text);
+      return;
+    }
+    messageContainer.innerHTML = `<div class="form-message ${type}">${text}</div>`;
+  };
+
+  const resetButton = () => {
+    submitButton.innerText = originalButtonText;
+    submitButton.disabled = false;
+  };
 
   // Poll for EmailJS global before initializing to avoid race conditions.
   const checkEmailJS = setInterval(() => {
@@ -30,11 +45,26 @@ document.addEventListener("DOMContentLoaded", () => {
     event.preventDefault();
     submitButton.innerText = "Sending...";
     submitButton.disabled = true;
+    if (messageContainer) {
+      messageContainer.innerHTML = "";
+    }
 
     const honeypotField = form.querySelector("input[name='honeypot']");
     if (honeypotField?.value) {
-      submitButton.innerText = originalButtonText;
-      submitButton.disabled = false;
+      resetButton();
+      return;
+    }
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      resetButton();
+      return;
+    }
+
+    if (typeof emailjs === "undefined") {
+      console.error("EmailJS SDK not available.");
+      showMessage("error", "Email service is unavailable at the moment. Please try again shortly or email us directly.");
+      resetButton();
       return;
     }
 
@@ -69,16 +99,15 @@ document.addEventListener("DOMContentLoaded", () => {
     emailjs
       .send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
       .then(() => {
-        alert("✅ Problem report sent successfully!");
+        showMessage("success", "Problem report sent successfully! We'll reach out soon.");
         form.reset();
       })
       .catch((err) => {
         console.error("❌ EmailJS error:", err);
-        alert("⚠️ Failed to send report. Please try again later.");
+        showMessage("error", "We couldn't send your report automatically. Please try again in a moment or email us directly.");
       })
       .finally(() => {
-        submitButton.innerText = originalButtonText;
-        submitButton.disabled = false;
+        resetButton();
       });
   });
 });

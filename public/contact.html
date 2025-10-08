@@ -3,8 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Reach HomeByte IT for on-site PC repair, remote support, and fast troubleshooting. Submit a detailed problem report online.">
+    <meta property="og:title" content="Contact HomeByte IT">
+    <meta property="og:description" content="Schedule expert PC support or send us the details of your computer issue.">
+    <meta property="og:type" content="website">
     <title>Contact - HomeByte IT</title>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="nav.js" defer></script>
 </head>
 <body>
     <header>
@@ -12,14 +17,7 @@
         <p class="tagline">Contact Us</p>
     </header>
 
-<nav>
-    <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="troubleshooting.html">Troubleshooting</a></li>
-        <li><a href="contact.html">Contact</a></li>
-    </ul>
-</nav>
+    <nav id="site-nav" aria-label="Primary navigation"></nav>
 
 <section>
     <h1>Get Professional Computer Support Today</h1>
@@ -52,7 +50,7 @@
         <h2>Detailed Problem Report</h2>
         <p>Fill out this form to give us everything we need to help you quickly and efficiently:</p>
 
-        <form id="problemReportForm">
+        <form id="problemReportForm" novalidate>
             <div class="form-row">
                 <div class="form-group half">
                     <label for="computerType">Computer Type*</label>
@@ -125,6 +123,7 @@
 
             <button type="submit" class="submit-button">Send Problem Report</button>
         </form>
+        <div id="formMessages" class="form-message-container" aria-live="polite"></div>
     </div>
 
     <div class="benefit">
@@ -145,7 +144,7 @@
 </footer>
 
 <!-- EmailJS scripts (fixed placement) -->
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-<script src="contact-script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
+<script src="contact-script.js" defer></script>
 </body>
 </html>
