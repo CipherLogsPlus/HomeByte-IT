@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const EMAILJS_PUBLIC_KEY = "jqeR1X8fnHf0opxzjEl_A";
+  const EMAILJS_PUBLIC_KEY = "fRoFZuQPSpVwvWNaV";
   const EMAILJS_SERVICE_ID = "service_p66l4q8";
   const EMAILJS_TEMPLATE_ID = "template_qs7mn4h";
 
