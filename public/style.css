@@ -286,31 +286,7 @@ section {
 .issue-card .issue-chip {
     font-size: 0.75rem;
     font-weight: 600;
-    color: #1e3a8a;
-}
-
-.issue-card.critical {
-    border-color: #fca5a5;
-}
-
-.issue-card.warning {
-    border-color: #fcd34d;
-}
-
-.issue-card.advisory {
-    border-color: #6ee7b7;
-}
-
-.issue-card.critical .issue-chip {
-    color: #b91c1c;
-}
-
-.issue-card.warning .issue-chip {
-    color: #b45309;
-}
-
-.issue-card.advisory .issue-chip {
-    color: #047857;
+    color: #1f2937;
 }
 
 .issue-card strong {

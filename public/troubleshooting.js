@@ -484,7 +484,7 @@ document.addEventListener("DOMContentLoaded", () => {
     matches.forEach(({ issue, matchedKeywords }) => {
       const card = document.createElement("button");
       card.type = "button";
-      card.className = `issue-card ${issue.severity}`;
+      card.className = "issue-card";
       card.innerHTML = `
         <div>
           <strong>${issue.title}</strong>
