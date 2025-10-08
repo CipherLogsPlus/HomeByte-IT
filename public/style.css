@@ -112,16 +112,23 @@ section {
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
+.troubleshooting-input {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
 .troubleshooting-tool input[type="text"] {
-    width: 70%;
+    flex: 1;
     padding: 12px;
     border: 2px solid #e5e7eb;
     border-radius: 5px;
     font-size: 16px;
-    margin-right: 10px;
 }
 
 .troubleshooting-tool button {
+    align-self: center;
     padding: 12px 20px;
     background-color: #3b82f6;
     color: white;
@@ -135,6 +142,65 @@ section {
     background-color: #2563eb;
 }
 
+.quick-topics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.quick-topic {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    text-align: left;
+    padding: 14px;
+    border-radius: 8px;
+    border: 1px solid #dbeafe;
+    background: #eff6ff;
+    color: #1e3a8a;
+    cursor: pointer;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.quick-topic:hover,
+.quick-topic:focus-visible {
+    box-shadow: 0 6px 14px rgba(30, 58, 138, 0.18);
+    transform: translateY(-2px);
+}
+
+.quick-topic strong {
+    font-size: 0.95rem;
+}
+
+.quick-topic span {
+    font-size: 0.8rem;
+    color: #1f2937;
+}
+
+.quick-topic.critical {
+    border-color: #fecaca;
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.quick-topic.warning {
+    border-color: #fde68a;
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.quick-topic.advisory {
+    border-color: #bbf7d0;
+    background: #dcfce7;
+    color: #065f46;
+}
+
+.suggestion-wrapper {
+    min-height: 80px;
+}
+
 .suggestion-results {
     background-color: #f0f9ff;
     border-left: 4px solid #3b82f6;
@@ -143,9 +209,21 @@ section {
     border-radius: 5px;
 }
 
+.suggestion-results.enhanced {
+    background: #ffffff;
+    border: 1px solid #dbeafe;
+    border-left: 4px solid #3b82f6;
+    box-shadow: 0 10px 18px rgba(15, 118, 110, 0.08);
+    padding: 20px;
+}
+
 .suggestion-results h4 {
     margin-top: 0;
     color: #1e3a8a;
+}
+
+.suggestion-results.enhanced h4 {
+    font-size: 1.2rem;
 }
 
 .suggestion-results ol {
@@ -163,6 +241,144 @@ section {
     font-weight: bold;
     padding: 5px;
     border-radius: 3px;
+}
+
+.issue-header p {
+    margin-top: 8px;
+    color: #1f2937;
+}
+
+.match-note {
+    font-size: 0.85rem;
+    color: #4b5563;
+}
+
+.match-note span {
+    font-weight: 600;
+}
+
+.issue-body {
+    display: grid;
+    gap: 18px;
+    margin: 20px 0;
+}
+
+.issue-body section h5 {
+    margin: 0 0 8px 0;
+    color: #1e3a8a;
+    font-size: 1rem;
+}
+
+.issue-body ol,
+.issue-body ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.issue-flags {
+    background: #fef2f2;
+    border-radius: 6px;
+    padding: 12px;
+    border: 1px solid #fecaca;
+}
+
+.issue-tools ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.issue-tools li {
+    margin-bottom: 6px;
+}
+
+.issue-tools a {
+    color: #2563eb;
+    text-decoration: none;
+}
+
+.issue-tools a:hover {
+    text-decoration: underline;
+}
+
+.suggestion-results.multi {
+    background: #f8fafc;
+    border: 1px solid #dbeafe;
+}
+
+.issue-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.issue-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 16px;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    cursor: pointer;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+    text-align: left;
+}
+
+.issue-card:hover,
+.issue-card:focus-visible {
+    box-shadow: 0 8px 18px rgba(59, 130, 246, 0.2);
+    transform: translateY(-1px);
+}
+
+.issue-card p {
+    margin: 4px 0 0 0;
+    color: #4b5563;
+    font-size: 0.9rem;
+}
+
+.issue-card .issue-chip {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #1e3a8a;
+}
+
+.issue-card.critical {
+    border-color: #fca5a5;
+}
+
+.issue-card.warning {
+    border-color: #fcd34d;
+}
+
+.issue-card.advisory {
+    border-color: #6ee7b7;
+}
+
+.issue-card.critical .issue-chip {
+    color: #b91c1c;
+}
+
+.issue-card.warning .issue-chip {
+    color: #b45309;
+}
+
+.issue-card.advisory .issue-chip {
+    color: #047857;
+}
+
+.issue-card strong {
+    display: block;
+    font-size: 0.95rem;
+    color: #111827;
+}
+
+.suggestion-results mark {
+    background: #fef3c7;
+    color: inherit;
+    padding: 0 2px;
+    border-radius: 2px;
 }
 
 .contact-note {
@@ -317,8 +533,13 @@ section {
     
     .troubleshooting-tool input[type="text"] {
         width: 100%;
-        margin-right: 0;
-        margin-bottom: 10px;
+    margin-right: 0;
+    margin-bottom: 10px;
+    }
+    
+    .troubleshooting-input {
+        flex-direction: column;
+        align-items: stretch;
     }
     
     .contact-options {

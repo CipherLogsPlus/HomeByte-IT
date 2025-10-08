@@ -30,12 +30,16 @@
         
         <div class="troubleshooting-tool">
             <h3>Describe Your Problem</h3>
-            <p>Type what's happening with your computer below, and we'll suggest some quick fixes:</p>
-            
-            <input type="text" id="problemInput" placeholder="e.g., my computer won't turn on, running very slow, blue screen..." />
-            <button type="button" id="suggestionButton">Get Help</button>
-            
-            <div id="suggestions"></div>
+            <p>Tell us what your computer is doing and we'll suggest targeted fixes. You can also choose one of the common issues below.</p>
+
+            <div class="troubleshooting-input">
+                <input type="text" id="problemInput" placeholder="e.g., computer won't turn on, getting blue screen 0x0000007E, Wi-Fi keeps dropping..." />
+                <button type="button" id="suggestionButton">Get Help</button>
+            </div>
+
+            <div class="quick-topics" id="quickTopics" aria-label="Common troubleshooting topics"></div>
+
+            <div id="suggestions" class="suggestion-wrapper" aria-live="polite"></div>
         </div>
         
         <div class="general-tips">
