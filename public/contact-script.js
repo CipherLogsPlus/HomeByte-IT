@@ -3,6 +3,21 @@ document.addEventListener("DOMContentLoaded", () => {
   const EMAILJS_SERVICE_ID = "service_p66l4q8";
   const EMAILJS_TEMPLATE_ID = "template_qs7mn4h";
 
+  const form = document.getElementById("problemReportForm");
+  if (!form) {
+    console.error("Problem report form not found on the page.");
+    return;
+  }
+
+  const submitButton = form.querySelector(".submit-button");
+  if (!submitButton) {
+    console.error("Submit button not found within the problem report form.");
+    return;
+  }
+
+  const originalButtonText = submitButton.innerText;
+
+  // Poll for EmailJS global before initializing to avoid race conditions.
   const checkEmailJS = setInterval(() => {
     if (typeof emailjs !== "undefined") {
       clearInterval(checkEmailJS);
@@ -11,23 +26,35 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }, 300);
 
-  const form = document.getElementById("problemReportForm");
-  const button = form.querySelector(".submit-button");
-
   form.addEventListener("submit", (event) => {
     event.preventDefault();
-    button.innerText = "Sending...";
-    button.disabled = true;
+    submitButton.innerText = "Sending...";
+    submitButton.disabled = true;
 
-    const honeypot = form.querySelector("input[name='honeypot']").value;
-    if (honeypot) {
-      button.innerText = "Send Problem Report";
-      button.disabled = false;
+    const honeypotField = form.querySelector("input[name='honeypot']");
+    if (honeypotField?.value) {
+      submitButton.innerText = originalButtonText;
+      submitButton.disabled = false;
       return;
     }
 
+    const formData = new FormData(form);
+    const templateParams = {
+      computer_type: formData.get("computerType") || "Not specified",
+      brand: formData.get("brand") || "Not specified",
+      model: formData.get("model") || "Not specified",
+      serial_number: formData.get("serialNumber") || "Not provided",
+      problem_description: formData.get("problemDescription") || "Not provided",
+      when_happened: formData.get("whenHappened") || "Not provided",
+      what_doing: formData.get("whatDoing") || "Not specified",
+      error_messages: formData.get("errorMessages") || "None reported",
+      customer_name: formData.get("customerName") || "Not provided",
+      customer_phone: formData.get("customerPhone") || "Not provided",
+      additional_notes: formData.get("additionalNotes") || "None provided",
+    };
+
     emailjs
-      .sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form)
+      .send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
       .then(() => {
         alert("✅ Problem report sent successfully!");
         form.reset();
@@ -37,8 +64,8 @@ document.addEventListener("DOMContentLoaded", () => {
         alert("⚠️ Failed to send report. Please try again later.");
       })
       .finally(() => {
-        button.innerText = "Send Problem Report";
-        button.disabled = false;
+        submitButton.innerText = originalButtonText;
+        submitButton.disabled = false;
       });
   });
 });
