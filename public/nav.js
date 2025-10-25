@@ -36,6 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <li><a href="index.html">Home</a></li>
           <li><a href="services.html">Services</a></li>
           <li><a href="troubleshooting.html">Troubleshooting</a></li>
+          <li><a href="remote-support.html">Remote Support</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       `;
