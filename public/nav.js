@@ -8,8 +8,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const highlightActiveLink = () => {
     const currentPath = window.location.pathname.split("/").pop() || "index.html";
     navContainer.querySelectorAll("a[href]").forEach((link) => {
-      if (link.getAttribute("href") === currentPath) {
-        link.classList.add("active");
+      const isActive = link.getAttribute("href") === currentPath;
+      link.classList.toggle("active", isActive);
+      if (isActive) {
+        link.setAttribute("aria-current", "page");
+      } else {
+        link.removeAttribute("aria-current");
       }
     });
   };
