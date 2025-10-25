@@ -499,6 +499,30 @@ footer {
     width: 100%;
 }
 
+.billing-block {
+    background-color: #fefbe8;
+    border: 1px solid #facc15;
+    border-left: 4px solid #eab308;
+    border-radius: 6px;
+    padding: 16px;
+    margin: 24px 0 8px 0;
+}
+
+.billing-block h3 {
+    margin-top: 0;
+    color: #b45309;
+    font-size: 1.1em;
+}
+
+.billing-block ul {
+    margin: 10px 0 0 18px;
+    padding: 0;
+}
+
+.billing-block li {
+    margin-bottom: 8px;
+}
+
 .disclaimer-block {
     background-color: #f8fafc;
     border: 1px solid #cbd5f5;
