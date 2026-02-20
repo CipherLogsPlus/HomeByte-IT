@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const EMAILJS_PUBLIC_KEY = "fRoFZuQPSpVwvWNaV";
   const EMAILJS_SERVICE_ID = "service_p66l4q8";
-  const EMAILJS_TEMPLATE_ID = "template_qs7mn4h";
+  const EMAILJS_TEMPLATE_ID = "HomeByteIT-Problem-Repor";
 
   const form = document.getElementById("problemReportForm");
   if (!form) {
@@ -136,7 +136,14 @@ document.addEventListener("DOMContentLoaded", () => {
       })
       .catch((err) => {
         console.error("❌ EmailJS error:", err);
-        showMessage("error", "We couldn't send your report automatically. Please try again in a moment or email us directly.");
+        const detail =
+          (err && (err.text || err.message)) ||
+          (typeof err === "string" ? err : "") ||
+          "Unknown email service error";
+        showMessage(
+          "error",
+          `We couldn't send your report automatically. ${detail}. Please try again in a moment or email us directly.`
+        );
       })
       .finally(() => {
         resetButton();
