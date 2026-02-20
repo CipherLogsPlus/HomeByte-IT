@@ -112,6 +112,47 @@
                 </div>
             </div>
 
+            <div class="form-row">
+                <div class="form-group half">
+                    <label for="customerEmail">Email</label>
+                    <input type="email" id="customerEmail" name="customerEmail" placeholder="name@example.com">
+                </div>
+                <div class="form-group half">
+                    <label for="bestContactMethod">Best Contact Method*</label>
+                    <select id="bestContactMethod" name="bestContactMethod" required>
+                        <option value="">Select one...</option>
+                        <option value="Phone">Phone</option>
+                        <option value="Email">Email</option>
+                        <option value="Text">Text</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group half">
+                    <label for="serviceAddress">Service Address*</label>
+                    <input type="text" id="serviceAddress" name="serviceAddress" placeholder="Street address where service is needed" required>
+                </div>
+                <div class="form-group half">
+                    <label for="serviceZip">ZIP Code*</label>
+                    <input type="text" id="serviceZip" name="serviceZip" inputmode="numeric" pattern="[0-9]{5}" placeholder="e.g., 16137" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group half">
+                    <label for="preferredTimeWindow">Preferred Time Window*</label>
+                    <input type="text" id="preferredTimeWindow" name="preferredTimeWindow" placeholder="e.g., Weekdays after 3pm" required>
+                </div>
+                <div class="form-group half">
+                    <label for="rushRequested">Rush Service Requested?</label>
+                    <select id="rushRequested" name="rushRequested">
+                        <option value="No" selected>No</option>
+                        <option value="Yes">Yes</option>
+                    </select>
+                </div>
+            </div>
+
             <div class="form-group">
                 <label for="additionalNotes">Additional Notes</label>
                 <textarea id="additionalNotes" name="additionalNotes" rows="3" placeholder="Best time to call, special instructions, or anything else we should know..."></textarea>

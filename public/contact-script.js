@@ -69,6 +69,26 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const formData = new FormData(form);
+    const customerEmail = formData.get("customerEmail") || "Not provided";
+    const serviceAddress = formData.get("serviceAddress") || "Not provided";
+    const serviceZip = formData.get("serviceZip") || "Not provided";
+    const preferredTimeWindow = formData.get("preferredTimeWindow") || "Not provided";
+    const bestContactMethod = formData.get("bestContactMethod") || "Not provided";
+    const rushRequested = formData.get("rushRequested") || "No";
+    const additionalNotesBase = formData.get("additionalNotes") || "None provided";
+
+    // Keep legacy templates compatible by embedding new routing fields in notes.
+    const additionalNotes = [
+      additionalNotesBase,
+      "",
+      `Customer Email: ${customerEmail}`,
+      `Service Address: ${serviceAddress}`,
+      `ZIP Code: ${serviceZip}`,
+      `Preferred Time Window: ${preferredTimeWindow}`,
+      `Best Contact Method: ${bestContactMethod}`,
+      `Rush Requested: ${rushRequested}`,
+    ].join("\n").trim();
+
     const values = {
       computerType: formData.get("computerType") || "Not specified",
       brand: formData.get("brand") || "Not specified",
@@ -80,7 +100,13 @@ document.addEventListener("DOMContentLoaded", () => {
       errorMessages: formData.get("errorMessages") || "None reported",
       customerName: formData.get("customerName") || "Not provided",
       customerPhone: formData.get("customerPhone") || "Not provided",
-      additionalNotes: formData.get("additionalNotes") || "None provided",
+      customerEmail,
+      serviceAddress,
+      serviceZip,
+      preferredTimeWindow,
+      bestContactMethod,
+      rushRequested,
+      additionalNotes,
     };
 
     const templateParams = {
@@ -93,6 +119,12 @@ document.addEventListener("DOMContentLoaded", () => {
       error_messages: values.errorMessages,
       customer_name: values.customerName,
       customer_phone: values.customerPhone,
+      customer_email: values.customerEmail,
+      service_address: values.serviceAddress,
+      service_zip: values.serviceZip,
+      preferred_time_window: values.preferredTimeWindow,
+      best_contact_method: values.bestContactMethod,
+      rush_requested: values.rushRequested,
       additional_notes: values.additionalNotes,
     };
 
