@@ -3,100 +3,271 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Stop wasting time on tech. Start growing your business with custom software and websites built for your workflow by HomeByte IT.">
-    <title>Custom Tools | HomeByte IT</title>
+    <meta name="description" content="Professional custom website design and software development by HomeByte IT. Affordable, secure, and built for your business.">
+    <title>Custom Websites & Software | HomeByte IT</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="nav.js" defer></script>
+    
+    <!-- Additional Styles for Pricing Section -->
+    <style>
+        .pricing-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin: 40px 0;
+        }
+        .pricing-card {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 25px;
+            flex: 1;
+            min-width: 300px;
+            max-width: 450px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .pricing-card.highlight {
+            border-color: #3b82f6;
+            box-shadow: 0 10px 15px rgba(59, 130, 246, 0.2);
+            transform: scale(1.02);
+            position: relative;
+        }
+        .pricing-card.highlight::before {
+            content: "Most Popular";
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #3b82f6;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            font-weight: bold;
+        }
+        .price-tag {
+            font-size: 2em;
+            font-weight: bold;
+            color: #1e3a8a;
+            margin: 15px 0;
+        }
+        .price-sub {
+            font-size: 0.6em;
+            color: #6b7280;
+            font-weight: normal;
+        }
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+            text-align: left;
+        }
+        .feature-list li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+        .feature-list li::before {
+            content: "✓";
+            color: #10b981;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        .addon-section {
+            background: #f8fafc;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 40px 0;
+            border-left: 4px solid #3b82f6;
+        }
+        .addon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .addon-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+        }
+        .addon-title {
+            font-weight: bold;
+            color: #1e3a8a;
+            margin-bottom: 5px;
+        }
+        .addon-price {
+            color: #3b82f6;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        .buyout-box {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 40px 0;
+        }
+        .buyout-box h3 {
+            color: white;
+            margin-top: 0;
+        }
+        .buyout-price {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .disclaimer-block {
+            background: #fffbeb;
+            border-left: 4px solid #f59e0b;
+            padding: 20px;
+            margin: 40px auto;
+            max-width: 800px;
+            border-radius: 5px;
+        }
+        .cta-button {
+            display: inline-block;
+            background: #3b82f6;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+        .cta-button:hover {
+            background: #2563eb;
+        }
+        @media (max-width: 768px) {
+            .pricing-card.highlight { transform: scale(1); }
+        }
+    </style>
 </head>
 <body>
     <header>
         <h1 class="logo">Home<span class="byte">Byte</span> IT</h1>
-        <p class="tagline">Tech support, right at your doorstep.</p>
+        <p class="tagline">Custom Websites & Software Solutions</p>
     </header>
     <nav id="site-nav" aria-label="Primary navigation"></nav>
+
     <section>
         <h1>Stop Wasting Time on Tech. Start Growing Your Business.</h1>
-        <p>We don't just fix computers. We build the custom software and websites that run your entire operation.</p>
+        <p>We don't just fix computers. We build the custom websites and software that run your entire operation. No deposits. Pay only when you approve the work.</p>
 
-        <h2>The Problem (Hook Them)</h2>
-        <p>Most local businesses are drowning in spreadsheets, lost paperwork, and slow websites. You're spending hours on admin work that should take minutes. You're losing customers because your site is outdated. You're guessing your profits because your data is messy.</p>
-        <p><strong>That ends today.</strong></p>
+        <h2>Website Packages</h2>
+        <div class="pricing-grid">
+            <!-- Starter Package -->
+            <div class="pricing-card">
+                <h3>Starter Website (Template)</h3>
+                <div class="price-tag">$499 <span class="price-sub">/ One-time</span></div>
+                <p>Perfect for a quick, professional online presence.</p>
+                <ul class="feature-list">
+                    <li>3 Standard Pages: Home, About, Contact</li>
+                    <li>Professional Template Design</li>
+                    <li>Mobile Friendly & Fast</li>
+                    <li>Hosting on GitHub</li>
+                    <li>No deposit required</li>
+                </ul>
+                <p><strong>Best for:</strong> Small businesses needing a simple site.</p>
+            </div>
 
-        <h2>The Solution (What We Actually Do)</h2>
-        <p>We build <strong>Custom Business Operating Systems</strong>. Unlike generic templates, we build tools tailored to your workflow. From automated invoicing to inventory tracking, we create the digital infrastructure that lets you focus on what you do best: running your business.</p>
-
-        <h3>Our Core Offerings:</h3>
-        <div class="service-item">
-            <h4>1. The "Business OS" (Custom Software)</h4>
-            <p><strong>What it is:</strong> A private, secure dashboard for your business.</p>
-            <p><strong>What it does:</strong> Tracks clients, manages inventory, calculates taxes, and generates invoices automatically.</p>
-            <p><strong>The Result:</strong> You save 10+ hours a week. No more Excel nightmares.</p>
-            <p><strong>Bonus:</strong> Includes our "Magic Importer" to instantly clean and move your old data into the new system.</p>
+            <!-- Custom Package -->
+            <div class="pricing-card highlight">
+                <h3>Custom Website (Tailored)</h3>
+                <div class="price-tag">$997 <span class="price-sub">/ One-time</span></div>
+                <p>Perfect for a unique, branded experience.</p>
+                <ul class="feature-list">
+                    <li>Everything in Starter, PLUS:</li>
+                    <li>100% Custom Design & Layout</li>
+                    <li>Unlimited Revisions</li>
+                    <li>Priority Support</li>
+                    <li>No deposit required</li>
+                </ul>
+                <p><strong>Best for:</strong> Businesses wanting full control.</p>
+            </div>
         </div>
-        <div class="service-item">
-            <h4>2. High-Converting Websites</h4>
-            <p><strong>What it is:</strong> A professional, fast, mobile-friendly site that works 24/7.</p>
-            <p><strong>What it does:</strong> Captures leads, books appointments, and builds trust instantly.</p>
-            <p><strong>The Result:</strong> You stop chasing customers; they start coming to you.</p>
-            <p><strong>Bonus:</strong> Integrated with your Business OS for seamless data flow.</p>
+
+        <h2>Essential Add-Ons</h2>
+        <div class="addon-section">
+            <div class="addon-grid">
+                <div class="addon-item">
+                    <div class="addon-title">Additional Page</div>
+                    <div class="addon-price">$99 / page</div>
+                    <p>Add Services, Gallery, Blog, or Team pages.</p>
+                </div>
+                <div class="addon-item">
+                    <div class="addon-title">On-Site Contact Form</div>
+                    <div class="addon-price">$49 / one-time</div>
+                    <p>Direct messaging to your email with spam protection.</p>
+                </div>
+                <div class="addon-item">
+                    <div class="addon-title">Custom Domain Name</div>
+                    <div class="addon-price">$10 - $99 / year</div>
+                    <p>Professional link (e.g., www.yourbusiness.com). Managed by us.</p>
+                </div>
+                <div class="addon-item">
+                    <div class="addon-title">Payment Processing</div>
+                    <div class="addon-price">$49 / one-time</div>
+                    <p>Accept Credit Cards & PayPal via Stripe setup.</p>
+                </div>
+            </div>
         </div>
 
-        <div class="benefit">
-            <h3>Why HomeByte IT? (The "Secret Sauce")</h3>
+        <h2>Maintenance & Support</h2>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3>Peace of Mind Plan</h3>
+                <div class="price-tag">$49 <span class="price-sub">/ month</span></div>
+                <p><strong>Recommended for all clients.</strong></p>
+                <ul class="feature-list">
+                    <li><strong>Unlimited Minor Edits:</strong> Text, images, colors on existing pages.</li>
+                    <li>24/7 Monitoring & Security Updates</li>
+                    <li>Domain Renewal Management</li>
+                    <li>Priority Support</li>
+                </ul>
+                <p><em>Cancel anytime. One small edit ($50) costs more than a full month!</em></p>
+            </div>
+            <div class="pricing-card">
+                <h3>One-Time Edit (Non-Subscriber)</h3>
+                <div class="price-tag">$50 <span class="price-sub">/ hour</span></div>
+                <p>For clients not on the monthly plan.</p>
+                <ul class="feature-list">
+                    <li>Minimum 1 hour charge</li>
+                    <li>Text changes, image swaps, link updates</li>
+                    <li>No monitoring included</li>
+                </ul>
+                <p><em>Site stays live, but no free edits.</em></p>
+            </div>
+        </div>
+
+        <div class="buyout-box">
+            <h3>Full Ownership Buyout</h3>
+            <div class="buyout-price">$10,000</div>
+            <p>Get the full source code and full rights to your website.</p>
+            <p>No more monthly fees. Host it anywhere. Modify it however you want.</p>
+            <p><em>A one-time payment for total independence.</em></p>
+        </div>
+
+        <div class="disclaimer-block">
+            <h3>Important Policies</h3>
             <ul>
-                <li><strong>Built by a Technician, Not a Designer:</strong> We understand how businesses actually work because we run one. We don't build pretty pictures; we build functional tools.</li>
-                <li><strong>No "Black Box" Mystery:</strong> You own your data. You own the code. No hidden fees, no vendor lock-in.</li>
-                <li><strong>Living Software:</strong> Our systems evolve. If you need a new feature, we build it. We don't charge you for "updates" because we are constantly improving the engine.</li>
-                <li><strong>Local & Trusted:</strong> We are in Mercer County. We can meet you in person to set it up.</li>
+                <li><strong>Code Ownership:</strong> All code is hosted on our private HomeByte IT GitHub account. You do not receive the source code unless you purchase the $10,000 Buyout.</li>
+                <li><strong>Domain Policy:</strong> Domains are registered under HomeByte IT. If the annual fee is not paid, the site remains live but the custom link (www...) stops working and reverts to the default GitHub address. A $49 restoration fee applies to fix this.</li>
+                <li><strong>Payment Terms:</strong> No deposits. We build the site, you approve it, then you pay. If you don't like it, we discard the work.</li>
+                <li><strong>Edits:</strong> Without the $49/mo plan, all changes are charged at $50/hour.</li>
             </ul>
         </div>
-
-        <h2>Pricing (Simple & Transparent)</h2>
-        <div class="pricing-option">
-            <h3>Option A: The "Own It" License - $1,497 (One-Time)</h3>
-            <ul>
-                <li>Full access to the software or website.</li>
-                <li>Lifetime license to the version you buy.</li>
-                <li>15-Day Bug Fix Warranty.</li>
-            </ul>
-            <p><strong>Best for:</strong> Businesses that want full control and don't need ongoing updates.</p>
-        </div>
-        <div class="pricing-option">
-            <h3>Option B: The "Managed Partner" Plan (Recommended) - $97/Month</h3>
-            <ul>
-                <li>Everything in Option A, PLUS:</li>
-                <li>Cloud Hosting (Accessible from anywhere).</li>
-                <li>Daily Automated Backups (Your data is never lost).</li>
-                <li>Automatic Updates (You get new features as we build them).</li>
-                <li>Priority Support & Security Monitoring.</li>
-            </ul>
-            <p><strong>Best for:</strong> Businesses that want a "set it and forget it" solution.</p>
-        </div>
-        <div class="pricing-option">
-            <h3>Add-On: Smart Data Migration - $250-$500</h3>
-            <ul>
-                <li>We take your messy old data (Excel, PDFs, notebooks) and clean it up.</li>
-                <li>Our "Magic Importer" tool moves it perfectly into your new system.</li>
-                <li>No more manual typing.</li>
-            </ul>
-        </div>
-
-        <h2>The Guarantee</h2>
-        <p>We don't just deliver code and disappear. We partner with you. If your system isn't saving you time or making you money, we'll fix it until it does.</p>
 
         <h2>Ready to Automate Your Business?</h2>
         <p>Don't guess with your budget. Tell us about your workflow, and we'll build a custom quote for you.</p>
         <p><a href="contact.html" class="cta-button">CONTACT US FOR A FREE CONSULTATION</a></p>
-
-        <div class="disclaimer-block">
-            <h3>Important Notes</h3>
-            <ul>
-                <li>All systems are custom-built based on your specific workflow and requirements.</li>
-                <li>Implementation includes training and onboarding support.</li>
-                <li>We prioritize data security, privacy, and compliance with industry standards.</li>
-            </ul>
-        </div>
     </section>
+
     <footer>
         <p><strong>HomeByte IT™</strong> is a sole proprietorship providing mobile computer support in Mercer County, Pennsylvania.</p>
         <p class="footer-links">
