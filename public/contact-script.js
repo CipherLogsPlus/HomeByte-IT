@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const WORKER_URL = "https://contact-form.cipherlogsplus.workers.dev";
+  const WORKER_URL = "https://homebyteit.com/api/contact";
 
   const form = document.getElementById("problemReportForm");
   if (!form) {
