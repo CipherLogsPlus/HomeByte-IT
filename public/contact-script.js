@@ -1,7 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const EMAILJS_PUBLIC_KEY = "fRoFZuQPSpVwvWNaV";
-  const EMAILJS_SERVICE_ID = "service_p66l4q8";
-  const EMAILJS_TEMPLATE_ID = "HomeByteIT-Problem-Repor";
+  const WORKER_URL = "https://contact-form.cipherlogsplus.workers.dev";
 
   const form = document.getElementById("problemReportForm");
   if (!form) {
@@ -32,16 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
     submitButton.disabled = false;
   };
 
-  // Poll for EmailJS global before initializing to avoid race conditions.
-  const checkEmailJS = setInterval(() => {
-    if (typeof emailjs !== "undefined") {
-      clearInterval(checkEmailJS);
-      emailjs.init(EMAILJS_PUBLIC_KEY);
-      console.log("✅ EmailJS initialized.");
-    }
-  }, 300);
-
-  form.addEventListener("submit", (event) => {
+  form.addEventListener("submit", async (event) => {
     event.preventDefault();
     submitButton.innerText = "Sending...";
     submitButton.disabled = true;
@@ -61,35 +50,8 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    if (typeof emailjs === "undefined") {
-      console.error("EmailJS SDK not available.");
-      showMessage("error", "Email service is unavailable at the moment. Please try again shortly or email us directly.");
-      resetButton();
-      return;
-    }
-
     const formData = new FormData(form);
-    const customerEmail = formData.get("customerEmail") || "Not provided";
-    const serviceAddress = formData.get("serviceAddress") || "Not provided";
-    const serviceZip = formData.get("serviceZip") || "Not provided";
-    const preferredTimeWindow = formData.get("preferredTimeWindow") || "Not provided";
-    const bestContactMethod = formData.get("bestContactMethod") || "Not provided";
-    const rushRequested = formData.get("rushRequested") || "No";
-    const additionalNotesBase = formData.get("additionalNotes") || "None provided";
-
-    // Keep legacy templates compatible by embedding new routing fields in notes.
-    const additionalNotes = [
-      additionalNotesBase,
-      "",
-      `Customer Email: ${customerEmail}`,
-      `Service Address: ${serviceAddress}`,
-      `ZIP Code: ${serviceZip}`,
-      `Preferred Time Window: ${preferredTimeWindow}`,
-      `Best Contact Method: ${bestContactMethod}`,
-      `Rush Requested: ${rushRequested}`,
-    ].join("\n").trim();
-
-    const values = {
+    const data = {
       computerType: formData.get("computerType") || "Not specified",
       brand: formData.get("brand") || "Not specified",
       model: formData.get("model") || "Not specified",
@@ -100,53 +62,35 @@ document.addEventListener("DOMContentLoaded", () => {
       errorMessages: formData.get("errorMessages") || "None reported",
       customerName: formData.get("customerName") || "Not provided",
       customerPhone: formData.get("customerPhone") || "Not provided",
-      customerEmail,
-      serviceAddress,
-      serviceZip,
-      preferredTimeWindow,
-      bestContactMethod,
-      rushRequested,
-      additionalNotes,
+      customerEmail: formData.get("customerEmail") || "Not provided",
+      serviceAddress: formData.get("serviceAddress") || "Not provided",
+      serviceZip: formData.get("serviceZip") || "Not provided",
+      preferredTimeWindow: formData.get("preferredTimeWindow") || "Not provided",
+      bestContactMethod: formData.get("bestContactMethod") || "Not provided",
+      rushRequested: formData.get("rushRequested") || "No",
+      additionalNotes: formData.get("additionalNotes") || "None provided",
     };
 
-    const templateParams = {
-      ...values,
-      computer_type: values.computerType,
-      serial_number: values.serialNumber,
-      problem_description: values.problemDescription,
-      when_happened: values.whenHappened,
-      what_doing: values.whatDoing,
-      error_messages: values.errorMessages,
-      customer_name: values.customerName,
-      customer_phone: values.customerPhone,
-      customer_email: values.customerEmail,
-      service_address: values.serviceAddress,
-      service_zip: values.serviceZip,
-      preferred_time_window: values.preferredTimeWindow,
-      best_contact_method: values.bestContactMethod,
-      rush_requested: values.rushRequested,
-      additional_notes: values.additionalNotes,
-    };
+    try {
+      const response = await fetch(WORKER_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
 
-    emailjs
-      .send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
-      .then(() => {
+      const result = await response.json();
+
+      if (response.ok) {
         showMessage("success", "Problem report sent successfully! We'll reach out soon.");
         form.reset();
-      })
-      .catch((err) => {
-        console.error("❌ EmailJS error:", err);
-        const detail =
-          (err && (err.text || err.message)) ||
-          (typeof err === "string" ? err : "") ||
-          "Unknown email service error";
-        showMessage(
-          "error",
-          `We couldn't send your report automatically. ${detail}. Please try again in a moment or email us directly.`
-        );
-      })
-      .finally(() => {
-        resetButton();
-      });
+      } else {
+        showMessage("error", result.error || "Something went wrong. Please try again or email us directly.");
+      }
+    } catch (err) {
+      console.error("Form submission error:", err);
+      showMessage("error", "We couldn't send your report. Please try again or email us directly.");
+    } finally {
+      resetButton();
+    }
   });
 });
